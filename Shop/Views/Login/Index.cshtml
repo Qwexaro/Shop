@@ -1,0 +1,19 @@
+﻿@model Login
+
+@{
+    ViewData["Login"] = "Логин";
+}
+
+<h1>Логин</h1>
+
+<form method="post" asp-controller="Login" asp-action="Check">
+    <label asp-for="Username"></label>
+    <input asp-for="Username" />
+    <span asp-validation-for="Username"></span>
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+    <span asp-validation-for="Password"></span>
+
+    <input type="submit" value="Подтвердить" />
+</form>
