@@ -7,7 +7,7 @@ namespace Shop.Models
         [Display(Name = "Введите имя")]
         [Required(ErrorMessage = "Необходимо ввести имя")]
         public required string Name { get; set; }
-        
+
 
         [Display(Name = "Введите фамилию")]
         [Required(ErrorMessage = "Необходимо ввести фамилию")]
