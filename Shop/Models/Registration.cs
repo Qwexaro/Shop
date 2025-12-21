@@ -15,7 +15,7 @@ namespace Shop.Models
 
 
         [Display(Name = "Введите почту")]
-        [Required(ErrorMessage = "Обязательное поле для заполнения")]
+        [Required(ErrorMessage = "Обязательное поле для заполнения"), DataType(DataType.Password)]
         public required string Email { get; set; }
     }
 }
