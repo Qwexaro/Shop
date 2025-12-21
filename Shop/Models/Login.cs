@@ -9,7 +9,7 @@ namespace Shop.Models
         public required string Username { get; set; }
 
 
-        [Display(Name = "Введите пароль")]
+        [Display(Name = "Введите пароль"), DataType(DataType.Password)]
         [Required(ErrorMessage = "Необходимо ввести свой пароль")]
         public required string Password { get; set; }
     }
