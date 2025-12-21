@@ -20,7 +20,7 @@ namespace Shop.Models
 
 
         [Display(Name = "Введите почту")]
-        [Required(ErrorMessage = "Необходимо ввести почту")]
+        [Required(ErrorMessage = "Необходимо ввести почту"), EmailAddress]
         public required string Email { get; set; }
 
 
