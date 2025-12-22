@@ -1,20 +1,39 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Models;
+using Shop.Services;
 
-namespace Shop.Controllers
+namespace ShoeStore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IShoeService _shoeService;
 
-        public HomeController(ILogger<HomeController> logger) => _logger = logger;
-        
-        public IActionResult Index() => View();
-        
+        public HomeController(IShoeService shoeService)
+        {
+            _shoeService = shoeService;
+        }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        
-        public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult Index()
+        {
+            var featuredProducts = _shoeService.GetFeaturedProducts();
+            var newArrivals = _shoeService.GetNewArrivals();
+            var saleProducts = _shoeService.GetOnSaleProducts();
+
+            var viewModel = new HomeViewModel
+            {
+                FeaturedProducts = featuredProducts,
+                NewArrivals = newArrivals,
+                OnSaleProducts = saleProducts
+            };
+
+            return View(viewModel);
+        }
+    }
+
+    public class HomeViewModel
+    {
+        public List<Product> FeaturedProducts { get; set; }
+        public List<Product> NewArrivals { get; set; }
+        public List<Product> OnSaleProducts { get; set; }
     }
 }
