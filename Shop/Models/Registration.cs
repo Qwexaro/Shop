@@ -10,12 +10,12 @@ namespace Shop.Models
 
 
         [Display(Name = "Придумайте надежный пароль")]
-        [Required(ErrorMessage = "Обязательное поле для заполнения")]
+        [Required(ErrorMessage = "Обязательное поле для заполнения"), DataType(DataType.Password)]
         public required string Password { get; set; }
 
 
         [Display(Name = "Введите почту")]
-        [Required(ErrorMessage = "Обязательное поле для заполнения"), DataType(DataType.Password)]
+        [Required(ErrorMessage = "Обязательное поле для заполнения"), EmailAddress]
         public required string Email { get; set; }
     }
 }
