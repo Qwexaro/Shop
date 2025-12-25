@@ -8,18 +8,14 @@ namespace Shop.Controllers
     {
         private readonly IAuthService _authService;
 
-        public RegistrationController(IAuthService authService)
-        {
-            _authService = authService;
-        }
-
+        public RegistrationController(IAuthService authService) => _authService = authService;
+        
         public IActionResult Index() => View();
 
         [HttpPost]
         public async Task<IActionResult> Check(Registration registration)
         {
-            if (!ModelState.IsValid)
-                return View("Index");
+            if (!ModelState.IsValid) return View("Index");
 
             var success = await _authService.RegisterAsync(
                 registration.Email,
@@ -29,6 +25,7 @@ namespace Shop.Controllers
             if (!success)
             {
                 ModelState.AddModelError("", "Пользователь с таким email уже существует");
+        
                 return View("Index");
             }
 

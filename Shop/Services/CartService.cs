@@ -47,10 +47,8 @@ namespace Shop.Services
                                            ci.ProductId == productId &&
                                            ci.SizeId == sizeId);
 
-            if (existingItem != null)
-            {
-                existingItem.Quantity += quantity;
-            }
+            if (existingItem != null) existingItem.Quantity += quantity;
+            
             else
             {
                 var cartItem = new CartItem
@@ -85,6 +83,7 @@ namespace Shop.Services
             }
 
             var cartItem = await _context.CartItems.FindAsync(cartItemId);
+            
             if (cartItem != null)
             {
                 cartItem.Quantity = quantity;
@@ -95,7 +94,9 @@ namespace Shop.Services
         public async Task ClearCartAsync(int cartId)
         {
             var items = await _context.CartItems.Where(ci => ci.CartId == cartId).ToListAsync();
+            
             _context.CartItems.RemoveRange(items);
+            
             await _context.SaveChangesAsync();
         }
 
